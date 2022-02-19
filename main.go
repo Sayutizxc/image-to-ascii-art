@@ -17,9 +17,9 @@ func main() {
 	img, err := loadImage(imagePath)
 	logFatalIfError(err)
 
-	const density = "Ñ@#W$9876543210?!abc;:+=-,._         "
-	const lengthDensity = len(density)
-	const maxDensityIndex = lengthDensity - 1
+	density := []string{" ", ".", "=", "!", "░", "▒", "▓", "█"}
+	lengthDensity := len(density)
+	maxDensityIndex := lengthDensity - 1
 
 	for y := img.Bounds().Min.Y; y < img.Bounds().Max.Y; y++ {
 		for x := img.Bounds().Min.X; x < img.Bounds().Max.X; x++ {
@@ -31,7 +31,7 @@ func main() {
 			if densityValue > maxDensityIndex {
 				densityValue = maxDensityIndex
 			}
-			densityString := " " + string(density[maxDensityIndex-densityValue])
+			densityString := " " + string(density[densityValue])
 			fmt.Print(densityString)
 		}
 		fmt.Print("\n")
